@@ -1,17 +1,38 @@
+import { useState } from 'react';
 import ChatScreen from './chats/ChatScreen';
+import Contacts from './chats/Contacts';
+import { mockMessages } from './chats/ChatScreen';
+import { IUser } from './chats/interface';
+
+const mockContacts: IUser[] = [
+  {
+    name: "Alice Johnson",
+    slug: "alice-johnson",
+    email: "alice@example.com",
+    image_url: "https://example.com/alice.jpg"
+  },
+  {
+    name: "Bob Smith",
+    slug: "bob-smith",
+    email: "bob@example.com",
+    image_url: "https://example.com/bob.jpg"
+  },
+  {
+    name: "Eve Williams",
+    slug: "eve-williams",
+    email: "eve@example.com"
+  }
+];
+
 
 export default function App() {
+  const [messages, setMessages] = useState(mockMessages);
+  const [contacts] = useState(mockContacts);
 
   return (
     <div className='flex justify-center items-center p-5 bg-slate-100'>
-      <ChatScreen /> 
+      <Contacts contacts={contacts} messages={messages} />
+      <ChatScreen onNewMessage={(newMessage) => setMessages([...messages, newMessage])} messages={messages} /> 
     </div>
   );
 }
-
-/*
-      <button onClick={() => setCount(i => i+1)} className='bg-slate-200 flex gap-2 p-5 hover:bg-slate-300 rounded-md border-spacing-1 '>
-        <span className='text-xl font-sans'>The count is: { count }</span>
-          <PlusIcon width="2rem" height="2rem" />
-      </button>
-*/

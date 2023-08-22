@@ -1,10 +1,6 @@
 export interface IMessage {
+  id: number;
   author: IUser;
-  receiver: {
-    group?: IGroup;
-    user?: IUser;
-    deliveredAt?: Date;
-  };
   body: string;
   meta: {
     time: {
@@ -19,6 +15,7 @@ export interface IUser {
   name: string;
   slug: string;
   email: string;
+  image_url?: string;
 }
 
 export interface IGroup {
